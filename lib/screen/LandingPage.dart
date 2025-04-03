@@ -64,7 +64,7 @@ class LandingPage extends StatelessWidget {
               buttonName: "Login",
               fontSize: 25,
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const Homepage()));
               },
             ),
