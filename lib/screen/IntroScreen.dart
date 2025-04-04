@@ -52,11 +52,11 @@ class IntroScreen extends StatelessWidget {
           ],
           onDone: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => const LandingPage()));
+                context, MaterialPageRoute(builder: (context) =>  LandingPage()));
           },
           onSkip: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => const LandingPage()));
+                context, MaterialPageRoute(builder: (context) =>  LandingPage()));
           },
           showSkipButton: true,
           skip: const Text("Skip", style: TextStyle(color: Colors.blue)),
