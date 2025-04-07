@@ -56,6 +56,49 @@ class _ApiServices implements ApiServices {
     return _value;
   }
 
+  @override
+  Future<RegistrationResponseModel> registerUser(
+    String name,
+    String email,
+    String avatar,
+    String password,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'name': name,
+      'email': email,
+      'avatar': avatar,
+      'password': password,
+    };
+    final _options = _setStreamType<RegistrationResponseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'https://api.escuelajs.co/api/v1/users',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RegistrationResponseModel _value;
+    try {
+      _value = RegistrationResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

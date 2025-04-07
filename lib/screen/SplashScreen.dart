@@ -14,14 +14,23 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return AnimatedSplashScreen(
-        splash: SingleChildScrollView(child: Column(
+        splash: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset('assets/images/animation.json',height: MediaQuery.of(context).size.height*.06, fit: BoxFit.contain),
-              Text("ShopEase",style: TextStyle(fontSize: 20),)
-            ],),),
-        duration:3000,curve: Curves.bounceOut,
+              Lottie.asset('assets/images/animation.json',
+                  height: MediaQuery.of(context).size.height * .06,
+                  fit: BoxFit.contain),
+              Text(
+                "ShopEase",
+                style: TextStyle(fontSize: 20),
+              )
+            ],
+          ),
+        ),
+        duration: 3000,
+        curve: Curves.bounceOut,
         splashTransition: SplashTransition.sizeTransition,
-        nextScreen: authProvider.isLoggedIn?Homepage():LandingPage());
+        nextScreen: authProvider.isLoggedIn ? const Homepage() : LandingPage());
   }
 }

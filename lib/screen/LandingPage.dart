@@ -6,24 +6,17 @@ import 'package:shopease/screen/Registration.dart';
 import 'package:shopease/widgets/CustomeWidgets.dart';
 
 class LandingPage extends StatelessWidget {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final _formKey =GlobalKey<FormState>();
+    final _formKey = GlobalKey<FormState>();
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Welcome to Shopese"),
       ),
       body: Stack(children: [
-        // Positioned(top: -50,left:-50,child: Container(height: 200,width: 200,decoration: BoxDecoration(
-        //   color: Colors.purple.withOpacity(0.3),borderRadius: BorderRadius.circular(100)
-        // ),),),
-        // Positioned(bottom: -30,right:-70,child: Container(height: 200,width: 200,decoration: BoxDecoration(
-        //     color: Colors.blue.withOpacity(0.3),borderRadius: BorderRadius.circular(100)
-        // ),),),
         Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
@@ -31,8 +24,10 @@ class LandingPage extends StatelessWidget {
             Colors.purpleAccent.shade100
           ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
         ),
-        Form(key: _formKey,
-          child: ListView(padding: const EdgeInsets.symmetric(horizontal: 20),
+        Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.02,
@@ -49,14 +44,26 @@ class LandingPage extends StatelessWidget {
               const Center(
                   child: Text(
                 "Login for the digital market👇.",
-
               )),
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.02,
               ),
-              CustomeWidgets.customeTextField(labelName: "Email",controller: emailController),
+              CustomeWidgets.customeTextField(
+                labelName: "Email",
+                controller: emailController,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter email' : null,
+              ),
               const SizedBox(height: 20),
-              CustomeWidgets.customeTextField(controller: passwordController,labelName: "Password", sufixIcon: const Icon(Icons.visibility_off)),
+              CustomeWidgets.customeTextField(
+                controller: passwordController,
+                labelName: "Password",
+                obsecureText: !authProvider.isVisible,
+                maxLines: 1,
+                sufixIcon: IconButton(onPressed: (){authProvider.toggleVisibility();}, icon: Icon(authProvider.isVisible?Icons.visibility:Icons.visibility_off)),
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter password' : null,
+              ),
               const Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -70,12 +77,16 @@ class LandingPage extends StatelessWidget {
                 fontSize: 25,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    authProvider.login(emailController.text.trim(), passwordController.text.trim())
+                    authProvider
+                        .login(emailController.text.trim(),
+                            passwordController.text.trim())
                         .then((_) {
                       if (authProvider.isLoggedIn) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => const Homepage()), // Replace with your homepage
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const Homepage()), // Replace with your homepage
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -91,8 +102,10 @@ class LandingPage extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Registration()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Registration()));
                   },
                   child: const Center(
                       child: Text(

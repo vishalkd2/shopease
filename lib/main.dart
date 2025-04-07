@@ -6,10 +6,10 @@ import 'package:shopease/screen/AppStart.dart';
 import 'package:provider/provider.dart';
 import 'package:shopease/services/ApiServices.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -18,12 +18,11 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => AuthProvider(apiServices),
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        home: AppStart()
-      ),
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
+          home: AppStart()),
     );
   }
 }
