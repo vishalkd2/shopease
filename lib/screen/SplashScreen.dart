@@ -31,6 +31,6 @@ class SplashScreen extends StatelessWidget {
         duration: 3000,
         curve: Curves.bounceOut,
         splashTransition: SplashTransition.sizeTransition,
-        nextScreen: authProvider.isLoggedIn ? const Homepage() : LandingPage());
+        nextScreen: authProvider.isLoggedIn ?  Homepage() : LandingPage());
   }
 }

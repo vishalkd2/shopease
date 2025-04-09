@@ -86,7 +86,7 @@ class LandingPage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const Homepage()), // Replace with your homepage
+                                   Homepage()), // Replace with your homepage
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
