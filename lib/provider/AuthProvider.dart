@@ -25,7 +25,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       final response =
           await apiServices.login({'email': email, 'password': password});
-      print('Login response: ${response.accessToken}');
+      print('Login response token: ${response.accessToken}');
       if (response != null && response.accessToken != null) {
         await storage.write(key: 'token', value: response.accessToken);
         _isLoggedIn = true;

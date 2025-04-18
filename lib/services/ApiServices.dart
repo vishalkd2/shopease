@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:shopease/models/CategoryModel.dart';
 import 'package:shopease/models/LoginResponseModel.dart';
+import 'package:shopease/models/ProductModel.dart';
 import 'package:shopease/models/RegistrationResponseModel.dart';
 part 'ApiServices.g.dart';
 
@@ -19,4 +21,10 @@ abstract class ApiServices {
     @Field('avatar') String avatar,
     @Field('password') String password,
   );
+
+  @GET('https://api.escuelajs.co/api/v1/categories')
+  Future<List<CategoryModel>> getCatogery();
+
+ @GET('https://api.escuelajs.co/api/v1/products/')
+  Future<List<ProductModel>> fetchProduct();
 }

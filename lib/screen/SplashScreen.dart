@@ -18,13 +18,9 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset('assets/images/animation.json',
-                  height: MediaQuery.of(context).size.height * .06,
+              Lottie.asset('assets/images/animation.json',height: MediaQuery.of(context).size.height * .06,
                   fit: BoxFit.contain),
-              Text(
-                "ShopEase",
-                style: TextStyle(fontSize: 20),
-              )
+              Text("ShopEase", style: TextStyle(fontSize: 20),)
             ],
           ),
         ),
