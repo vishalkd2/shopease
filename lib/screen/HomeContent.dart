@@ -134,10 +134,17 @@ class _HomeContentState extends State<HomeContent> {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return GestureDetector(
-                    onTap:(){Navigator.push(context, MaterialPageRoute(builder:(context)=>ProductDetails(product: product[index])));} ,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductDetails(product: product[index])));
+                    },
                     child: Card(
                         elevation: 3,
-                        child: ClipRRect(borderRadius: BorderRadius.circular(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
                           child: Stack(
                             children: [
                               Image.network(
